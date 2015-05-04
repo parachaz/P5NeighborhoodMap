@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="js/libs/jquery.min.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script src="http://maps.googleapis.com/maps/api/js"></script>
+        <script src="js/script.js"></script>
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    </head>
+
+    <body>
+        <div id="header">
+            <center>
+                <h1>Times Square, NYC</h1>
+            </center>
+
+            <form id="searchForm">
+                <label for="search">Search </label>
+                <input type="text" id="search" value="" placeholder="Type a string to filter the results">
+
+            </form>
+        </div>
+        <hr>
+        <div id="content">
+            <div id="attractions">
+                <ol id="attacionsList">
+
+                </ol>
+            </div> 
+            <div id="map-canvas" class="right" ></div>
+        </div>
+    </body>
+
+</html>
