@@ -1,90 +1,81 @@
-//Intialize the map with Time Square location
-var myLatlng = new google.maps.LatLng(40.759094, -73.985136);
+//Variable for the map.
 var map;
-//An array of all markers. We will use this array to hide/show a marker based on search key
-var markers = [];
-var $attacionsList;
-var $searchBox;
-function initialize() {
+
+// Class to represent a marker on the map
+function MapMarker(id, title, lat, lng, description, category) {
+    var self = this;
+    self.id = id;
+    self.title = title;
+    self.lat = lat;
+    self.lng = lng;
+    self.latLng = new google.maps.LatLng(lat, lng);
+    self.description = description;
+    self.category = category;
+    self.icon = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + id + "|FF0000|000000";
+    self.marker = new google.maps.Marker({
+        position: self.latLng,
+        title: title,
+        /*  Use google API to put a sequence number on the marker.
+         *  Marker will have the same number as the corresponding
+         *  item on the attraction list*/
+        icon: "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + id + "|FF0000|000000"
+    });
+    self.marker.setMap(map);
+}
+
+
+
+//ViewModel for the screen.
+function MapMarkerViewModel() {
+    var self = this;
+    self.markers = ko.observableArray();
+    $.getJSON("js/mapMarkers.json", function (data) {
+        var id = 1;
+        var arr = $.map(data, function (el) {
+            return el;
+        });
+        for (var i = 0; i < arr.length; i++) {
+            var marker = new MapMarker(id++, arr[i].title, arr[i].lat, arr[i].lng, arr[i].description);
+            self.markers.push(marker);
+        }
+        ;
+    });
+
+    self.map = map;
+    self.searchField = ko.observable("");
+    
+    //Filter attractions based on the search stirng.
+    self.filterMarkers = function (mapMarker) {
+        var markerMatched = false;
+        //Search for the string anywhere in the title  using regex
+        var pattern = new RegExp(self.searchField(), "i");
+        var title = mapMarker.title;
+        var titleMatch = pattern.test(title);
+        if (!titleMatch) {
+            mapMarker.marker.setMap(null);
+        } else {
+            mapMarker.marker.setMap(map);
+            markerMatched = true;
+        }
+        return markerMatched;
+
+    };
+
+}
+function initializeMap() {
+    //Intialize the map with Time Square location
     var mapProp = {
-        center: myLatlng,
+        center: new google.maps.LatLng(40.759094, -73.985136),
         zoom: 12
     };
     map = new google.maps.Map(document.getElementById("map-canvas"), mapProp);
-
 }
-google.maps.event.addDomListener(window, 'load', initialize);
-$(function () {
-    var seq = 0;
-    $attacionsList = $('#attacionsList');
-    $searchBox = $("#search");
-    var infoWindow = new google.maps.InfoWindow;
 
-    $.getJSON("js/mapMarkers.json", function (attraction) {
-        $.each(attraction, function (key, data) {
-            seq++;
-            var latLng = new google.maps.LatLng(data.lat, data.lng);
-            // Creating a marker and putting it on the map
-            var marker = new google.maps.Marker({
-                position: latLng,
-                title: data.title,
-                /*  Use google API to put a sequence number on the marker.
-                 *  Marker will have the same number as the corresponding
-                 *  item on the attraction list*/
-                icon: "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + seq + "|FF0000|000000"
-            });
-            /*
-             * Add the title of this marker to the attraction list.
-             * We will use the title as the id for each item, this id will be used to hide/show 
-             * a list item based on the search criteria.
-             */
-
-            marker.setMap(map);
-            //Add marker to the markers array. We will use this array to hide/show a marker based on search key
-            markers.push(marker);
-            //Create the string to be used to trigger click event when user clicks on the link in the list
-            var str1 = "href='javascript:google.maps.event.trigger(markers[" + (seq - 1) + "]";
-            var str2 = ",&#39;click&#39;);'>";
-            var str = str1.concat(str2);
-            //Add the atration to the list
-            $attacionsList.append("<li class='markerLink' id = '" + data.title.replace(/\s+/g, '') + "' title='"
-                    + data.description + "'><a  id='" + data.title.replace(/\s+/g, '') +
-                    "' " + str + data.title + "</a></li>");
-            //Register click event each marker.
-            //We will display Marker title and description
-            google.maps.event.addListener(marker, 'click', function () {
-                infoWindow.setContent('<h3>' + marker.title + '</h3><br>' + data.description);
-                infoWindow.open(map, marker);
-            });
-
-            
-            google.maps.event.addListener(map, 'click', function () {
-                infoWindow.close();
-            });
-        });
-    });
+$(document).ready(function () {
+    initializeMap();
     
-    //handle the input in the search field
-    $searchBox.keyup(function () {
-        var searchKey = $searchBox.val();
-        //Search for the string anywhere in the title  using regex
-        var pattern = new RegExp(searchKey, "i");
-        for (var i = 0; i < markers.length; i++) {
-            var marker = markers[i];
-            var title = marker["title"];
-            var titleMatch = pattern.test(title);
-            var id = '#' + title.replace(/\s+/g, '');
+    ko.applyBindings(new MapMarkerViewModel());
 
-            if (!titleMatch) {
-                marker.setMap(null);
-                $(id).hide();
-            } else {
-                marker.setMap(map);
-                $(id).show();
-            }
-
-        }
-    });
-    
 });
-       
+
+
