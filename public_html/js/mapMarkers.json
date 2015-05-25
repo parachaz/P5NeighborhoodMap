@@ -1,44 +1,57 @@
-{"attractions":[
-    {
-        "title":"Times Square",
-        "lat":40.758018, 
-        "lng":-73.985710,
-        "description": "Plaza and Monument",
-        "category":"Landmark"
-    },
-    {
-        "title":"Hilton Garden Inn",
-        "lat":40.764763, 
-        "lng":-73.983102,
-        "description": "Hilton Garden Inn Central Hotel",
-        "category":"Hotel"
-    }, 
-    {
-        "title": "Shake Shack",
-        "lat": 40.758707,
-        "lng":  -73.989242,
-        "description": "Burger Joint, Hot Dog Joint, and Ice Cream Shop",
-        "category":"dining"
-    },
-    {
-        "title": "Whitmans",
-        "lat": 40.728011, 
-        "lng": -73.984448,
-        "description": "Burger Joint, American Restaurant.",
-         "category":"dining"
-    },
-    {
-        "title": "Westville Chelsea",
-        "lat": 40.742109,
-        "lng":  -74.000051,
-        "description": "American Restaurant",
-         "category":"dining"
-    },
-    {
-        "title":"Central Park South",
-        "lat":40.766650, 
-        "lng":-73.978013, 
-        "description": "Hilton Garden Inn Central Hotel",
-        "category":"Hotel"
-    }
-]}
+{
+    "attractions": [
+        {
+            "title": "Morosco Theatre",
+            "lat": 40.758018,
+            "lng": -73.985710,
+            "description": "Theatre",
+            "category": "Landmark"
+        },
+        {
+            "title": "Rockefeller Plaza,",
+            "lat": 40.760232,
+            "lng": -73.978072,
+            "description": "Rockefeller Plaza",
+            "category": "Landmark"
+        },
+        {
+            "title": "Shake Shack",
+            "lat": 40.758707,
+            "lng": -73.989242,
+            "description": "Burger Joint, Hot Dog Joint, and Ice Cream Shop",
+            "category": "dining"
+        },
+        {
+            "title": "Cafe Boulud",
+            "lat": 40.728011,
+            "lng": -73.984448,
+            "description": "Burger Joint, American Restaurant.",
+            "category": "dining"
+        },
+        {
+            "title": "The Plaza Hotel",
+            "lat": 40.7646095,
+            "lng": -73.9743547,
+            "description": "American Restaurant",
+            "category": "dining"
+        },
+        {
+            "title": "Manhattan Center",
+            "lat": 40.752560,
+            "lng": -73.994723
+
+        },
+        {
+            "title": "Radio City Music Hall",
+            "lat": 40.760019, 
+            "lng": -73.979446
+
+        }, {
+            "title": "Statue of Liberty",
+            "lat": 40.689367,
+            "lng": -74.044502,
+            "description": "Statue of Liberty",
+            "category": "Iconic Landmark"
+        }
+    ]
+}

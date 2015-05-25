@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="js/libs/jquery.min.js"></script>
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <script src="http://maps.googleapis.com/maps/api/js"></script>
-        <link rel="stylesheet" href="css/styles.css">
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <script src="js/libs/jquery.min.js"></script>
+        <script src="js/libs/jquery-ui.js"></script>
+        <script type='text/javascript' src='js/offline.min.js'></script>
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/offline-language-english.css">
+        <link rel="stylesheet" href="css/offline-theme-default.css">
         <title>Map of NYC Using Google Map & Knockout MVVM</title>
 
     </head>
 
     <body>
         <div id="header">
-            <center>
-                <h1>Times Square, NYC</h1>
-            </center>
-
+            
+                <h1>New York City Landmarks.</h1>
+           
             <form id="searchForm">
                 <label for="search">Search </label>
                 <!--Use textInput binding to trigger the instant update of the attraction list-->
@@ -29,7 +30,8 @@
                 <!--bind the list to the markers ViewModel--->
                 <ol id="attractionsList" data-bind="foreach:markers">
                     <!--Use visible binding to hide/display the attraction based on search string -->
-                    <li data-bind="visible:$root.filterMarkers($data),text:title"></li>
+                    <li data-bind="visible:$root.filterMarkers($data)">
+                        <a><span data-bind="text:title,click:$root.loadMarkerDecription($data),css:$root.styling($data)"></span></a></li>
                 </ol>
 
             </div> 
@@ -38,7 +40,9 @@
         </div>
         <script  src='js/knockout-3.3.0.js'></script>
         <script  src='js/knockout.mapping-latest.js'></script>
+        <script src="js/libs/googleapi.js"></script>
         <script type='text/javascript' src='js/script.js'></script>
+
     </body>
 
 </html>

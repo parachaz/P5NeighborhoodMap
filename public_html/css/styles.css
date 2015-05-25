@@ -1,36 +1,43 @@
- html, body, #map-canvas {
-                height: 100%;
-                margin: 0px;
-                padding: 0px
-            }
+html, body, #map-canvas {
+    height: 100%;
+    margin: 0px;
+    padding: 0px
+}
 
-            #header{
-                padding-bottom:40px;
-            }
-            #map-canvas {
-                height:800px;
-                float:right;
-                width:80%;
-            }
-            #attractions {
-                float: left;
-                width: 15%;
-                background-color: antiquewhite;
-                padding-right:5%;
-                height:800px;
-                line-height:2.5em;
-                font-size:1.0em;
-                font-family: Bitter, Georgia, serif;
-            }
-            #searchForm{
-                float:right;
-                width:20%;
-            }
-            
-            a{
-                text-decoration:none;
-                color:#333;
-            }
-            a:hover{
-                text-decoration: underline;
-            }
+#header{
+    padding-bottom:40px;
+}
+#map-canvas {
+    height:800px;
+    float:right;
+    width:75%;
+}
+#attractions {
+    float: left;
+    width: 20%;
+    background-color: antiquewhite;
+    padding-right:5%;
+    height:800px;
+    line-height:2.5em;
+    font-size:1.0em;
+    font-family: Bitter, Georgia, serif;
+}
+#searchForm{
+    float:right;
+    width:20%;
+}
+
+a{
+    text-decoration:none;
+    color:#333;
+}
+a:hover{
+    text-decoration: underline;
+}
+
+.selected
+{
+    color: blue;
+    font-weight: bold;
+    text-decoration: underline;
+}
