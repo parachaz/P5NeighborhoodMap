@@ -45,3 +45,6 @@ ul
     font-weight: bold;
     text-decoration: underline;
 }
+input{
+    min-width: 225px;
+}

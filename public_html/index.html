@@ -24,22 +24,24 @@
 
     <body>
 
-        
+
 
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6 col-md-6 col-lg-6"><h1>New York City Landmarks.</h1></div>
-               <div class="col-sm-6 col-md-6 col-lg-6">
-                    <form id="searchForm">
-                        <label for="search">Search </label>
-                        <!--Use textInput binding to trigger the instant update of the attraction list-->
-                        <input data-bind="textInput: $root.searchField" placeholder="Type a string to filter the results">
-                    </form>
+                <div class="col-sm-6 col-md-6 col-lg-6"   >
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="search">Search</label>
+                    <input  data-bind="textInput: $root.searchField" type="text" class="form-control" id="search" placeholder="Type a string to filter the results">
+                </div>
+               
+            </form>
                 </div>
             </div>
             <hr>
             <div class="row">
-               <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="col-sm-3 col-md-3 col-lg-3">
                     <ul  id="attractionsList" data-bind="foreach:markers">
                         <!--Use visible binding to hide/display the attraction based on search string -->
                         <li data-bind="visible:$root.filterMarkers($data)">
@@ -47,9 +49,9 @@
                             <a><span data-bind="text:title,click:$root.loadMarkerDecription($data),css:$root.styling($data)"></span></a>
                         </li>
                     </ul></div>
-                 <div class="col-sm-9 col-md-9 col-lg-9" id="map-canvas" data-bind="map:map"  >
+                <div class="col-sm-9 col-md-9 col-lg-9" id="map-canvas" data-bind="map:map"  >
 
-                   
+
 
                 </div>
 
@@ -57,9 +59,9 @@
         </div>
         <script src="js/libs/jquery.min.js"></script>
         <script src="js/libs/jquery-ui.js"></script>
-        <script type='text/javascript' src='js/offline.min.js'></script>
-        <script  src='js/libs/knockout-3.3.0.js'></script>
-        <script  src='js/libs/knockout.mapping-latest.js'></script>
+        <script src='js/libs/offline.min.js'></script>
+        <script src='js/libs/knockout-3.3.0.js'></script>
+        <script src='js/libs/knockout.mapping-latest.js'></script>
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
         <script type='text/javascript' src='js/script.js'></script>
         <script src="js/libs/bootstrap.min.js"></script>
