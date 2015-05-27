@@ -9,12 +9,13 @@ html, body, #map-canvas {
 }
 #map-canvas {
     height:800px;
+/*
     float:right;
-    width:75%;
+    width:80%;*/
 }
 #attractions {
     float: left;
-    width: 20%;
+    width: 15%;
     background-color: antiquewhite;
     padding-right:5%;
     height:800px;
@@ -34,7 +35,10 @@ a{
 a:hover{
     text-decoration: underline;
 }
-
+ul
+{
+    list-style-type: none;
+}
 .selected
 {
     color: blue;

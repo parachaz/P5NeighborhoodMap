@@ -16,6 +16,9 @@ function MapMarker(id, title, lat, lng) {
     self.selected = ko.observable(false);
     self.lat = lat;
     self.lng = lng;
+    self.formatteID = ko.computed(function() {
+        return self.id + ".\xA0";
+    }, this);
     self.latLng = new google.maps.LatLng(lat, lng);
      self.iconColor = ko.observable("|FFF000|000000");
     self.icon = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + id + self.iconColor();
